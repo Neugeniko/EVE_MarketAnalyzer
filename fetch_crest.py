@@ -79,14 +79,14 @@ def fetch_markethistory(regions={}, thread_id=(0,1), debug=False, testserver=Fal
 
 	 #remove typeid NOT IN eventualy
 	items_query = '''
-		SELECT typeid
-		FROM invtypes conv
-		JOIN invgroups grp ON (conv.groupID = grp.groupID)
-		WHERE marketgroupid IS NOT NULL
+		SELECT typeID
+		FROM invTypes conv
+		JOIN invGroups grp ON (conv.groupID = grp.groupID)
+		WHERE marketGroupID IS NOT NULL
 		AND conv.published = 1
-		AND grp.categoryid NOT IN (9,16,350001,2)
-		AND grp.groupid NOT IN (30,659,485,485,873,883)
-		ORDER BY typeid
+		AND grp.categoryID NOT IN (9,16,350001,2)
+		AND grp.groupID NOT IN (30,659,485,485,873,883)
+		ORDER BY typeID
 		'''
 
 	item_list = [row[0] for row in sde_cur.execute(items_query).fetchall()]
